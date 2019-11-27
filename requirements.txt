@@ -3,7 +3,7 @@ bs4==0.0.1
 certifi==2018.11.29
 chardet==3.0.4
 Django==2.1.5
-djangorestframework==3.7.3
+djangorestframework==3.9.1
 idna==2.8
 Jinja2==2.10
 lxml==4.3.0
