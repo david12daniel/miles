@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p></p>
+<div class="row">
+    <div class="span10">
+        <div class="widget widget-nopad">
+            <div class="widget-header"><i class="icon-list-alt"></i>
+                <h3>Food Item</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+                <div class="widget big-stats-container">
+                    <div class="widget-content">
+                        <div id="big_stats" class="cf">
+                            <div class="stat"><i class="icon-barcode"></i> <span
+                                    class="value"> {{ food.esFood.name }}</span></div>
+                            <!-- .stat -->
+
+                            <div class="stat"><i class="icon-globe"></i> <span class="value">{{ food.esFood.ds }}</span>
+                            </div>
+                            <!-- .stat -->
+
+                            <div class="stat"><i class="icon-building"></i> <span
+                                    class="value">{{ food.esFood.manu }}</span></div>
+                            <!-- .stat -->
+
+
+                            <div class="stat"><i class="icon-heart"></i> <span class="value">{{ score.health }}</span>
+                            </div>
+                            <!-- .stat -->
+
+                            <div class="stat"><i class="icon-leaf"></i> <span
+                                    class="value">{{ score.environment }}</span></div>
+                            <!-- .stat -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="widget widget-table action-table">
+    <div class="widget-header"><i class="icon-th-list"></i>
+        <h3>Food Detail</h3>
+    </div>
+    <!-- /widget-header -->
+    <div class="widget-content">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Derivation</th>
+                <th>Group</th>
+                <th>Unit</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for nutrient in food.esFood.nutrients %}
+            <tr>
+                <td>{{ nutrient.name }}</td>
+                <td>{{ nutrient.derivation }}</td>
+                <td>{{ nutrient.group }}</td>
+                <td>{{ nutrient.unit }}</td>
+                <td>{{ nutrient.value }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- /widget-content -->
+    <!-- /widget-header -->
+    <div class="widget-content">
+        <div class="widget-header"><i class="icon-th-list"></i>
+            <h3>Ingredients</h3>
+        </div>
+        <h6>{{ food.esFood.ing.desc }}</h6>
+    </div>
+    <div class="widget-content">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Label</th>
+                <th>Additives</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for ingredient in food.esFood.ing.meta %}
+            <tr>
+                {% if ingredient.meta %}
+                <td><a href="{{ ingredient.meta.substance_url}}" target="_blank">{{ ingredient.meta.substance }}</a></td>
+                <td>
+                    {% for category in ingredient.meta.categories %}
+                                {{ category.category }}
+                    {% endfor %}
+                </td>
+                {% else %}
+                <td>{{ ingredient.ingredient_label }}</td>
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /widget-content -->
+    <div class="widget-content">
+        <div class="widget-header"><i class="icon-th-list"></i>
+            <h3>Resources</h3>
+        </div>
+        <h6><a target="_blank"
+               href="https://www.fda.gov/food/ingredientspackaginglabeling/foodadditivesingredients/ucm094211.htm#types">FDA
+            Types of Food Ingredients </a></h6>
+        <h6><a target="_blank" href="https://www.fda.gov/downloads/food/ingredientspackaginglabeling/ucm094249.pdf">FDA
+            Ingredients Packaging Labeling</a></h6>
+        <h6><a href="https://www.ams.usda.gov/sites/default/files/media/Flavors%20nonsynthetic%202%20TR.pdf"
+               target="_blank">USDA Food Ingredient Flavor Enhancement definitions</a></h6>
+        <table class="table table-bordered table-condensed">
+            <thead>
+            <tr valign="top">
+                <th scope="col">Types of Ingredients</th>
+                <th scope="col">What They Do</th>
+                <th scope="col">Examples<br>
+                    of Uses
+                </th>
+                <th scope="col">Names Found<br>
+                    on Product Labels
+                </th>
+                <th>More Info</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr valign="top">
+                <th scope="row">Preservatives</th>
+                <td>Prevent food spoilage from bacteria, molds, fungi, or yeast (antimicrobials); slow or prevent
+                    changes in color, flavor, or texture and delay rancidity (antioxidants); maintain freshness
+                </td>
+                <td>Fruit sauces and jellies, beverages, baked goods, cured meats, oils and margarines, cereals,
+                    dressings, snack foods, fruits and vegetables
+                </td>
+                <td>Ascorbic acid, citric acid, sodium benzoate, calcium propionate, sodium erythorbate, sodium nitrite,
+                    calcium sorbate, potassium sorbate, BHA, BHT, EDTA, tocopherols (Vitamin E)
+                </td>
+                <td><a target="_blank" href="https://www.fda.gov/food/ingredientspackaginglabeling/foodadditivesingredients/ucm091048.htm">FDA</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Sweeteners</th>
+                <td>Add sweetness with or without the extra calories</td>
+                <td>Beverages, baked goods, confections, table-top sugar, substitutes, many processed foods</td>
+                <td>Sucrose (sugar), glucose, fructose, sorbitol, mannitol, corn syrup, high fructose corn syrup,
+                    saccharin, aspartame, sucralose, acesulfame potassium (acesulfame-K), neotame
+                </td>
+                <td><a href="https://www.fda.gov/food/ingredientspackaginglabeling/foodadditivesingredients/ucm397725.htm" target="_blank">FDA</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Color Additives</th>
+                <td>Offset color loss due to exposure to light, air, temperature extremes, moisture and storage
+                    conditions; correct natural variations in color; enhance colors that occur naturally; provide color
+                    to colorless and "fun" foods
+                </td>
+                <td>Many processed foods, (candies, snack foods margarine, cheese, soft drinks, jams/jellies, gelatins,
+                    pudding and pie fillings)
+                </td>
+                <td>FD&amp;C Blue Nos. 1 and 2, FD&amp;C Green No. 3, FD&amp;C Red Nos. 3 and 40, FD&amp;C Yellow Nos. 5
+                    and 6, Orange B, Citrus Red No. 2, annatto extract, beta-carotene, grape skin extract, cochineal
+                    extract or carmine, paprika oleoresin, caramel color, fruit and vegetable juices, saffron (Note:
+                    Exempt color additives are not required to be declared by name on labels but may be declared simply
+                    as colorings or color added)
+                </td>
+                <td><a target="_blank" href="https://www.fda.gov/forindustry/coloradditives/coloradditiveinventories/ucm115641.htm#ftnote1">FDA</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Flavors and Spices</th>
+                <td>Add specific flavors (natural and synthetic)</td>
+                <td>Pudding and pie fillings, gelatin dessert mixes, cake mixes, salad dressings, candies, soft drinks,
+                    ice cream, BBQ sauce
+                </td>
+                <td>Natural flavoring, artificial flavor, and spices</td>
+                <td><a target="_blank" href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/cfrsearch.cfm?fr=101.22">CFR - Code of Federal Regulations Title 21</a> </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Flavor Enhancers</th>
+                <td>Enhance flavors already present in foods (without providing their own separate flavor)</td>
+                <td>Many processed foods</td>
+                <td>Monosodium glutamate (MSG), hydrolyzed soy protein, autolyzed yeast extract, disodium guanylate or
+                    inosinate
+                </td>
+                <td><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/CFRSearch.cfm?fr=102.22" target="_blank">CFR - Code of Federal Regulations Title 21- Protein hydrolysates</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Fat Replacers (and components of formulations used to replace fats)</th>
+                <td>Provide expected texture and a creamy "mouth-feel" in reduced-fat foods</td>
+                <td>Baked goods, dressings, frozen desserts, confections, cake and dessert mixes, dairy products</td>
+                <td>Olestra, cellulose gel, carrageenan, polydextrose, modified food starch, microparticulated egg white
+                    protein, guar gum, xanthan gum, whey protein concentrate
+                </td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Nutrients</th>
+                <td>Replace vitamins and minerals lost in processing (enrichment), add nutrients that may be lacking in
+                    the diet (fortification)
+                </td>
+                <td>Flour, breads, cereals, rice, macaroni, margarine, salt, milk, fruit beverages, energy bars, instant
+                    breakfast drinks
+                </td>
+                <td>Thiamine hydrochloride, riboflavin (Vitamin B<sub>2</sub>), niacin, niacinamide, folate or folic
+                    acid, beta carotene, potassium iodide, iron or ferrous sulfate, alpha tocopherols, ascorbic acid,
+                    Vitamin D, amino acids (L-tryptophan, L-lysine, L-leucine, L-methionine)
+                </td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Emulsifiers</th>
+                <td>
+                    <p>Allow smooth mixing of ingredients, prevent separation</p>
+                    <p>Keep emulsified products stable, reduce stickiness, control crystallization, keep ingredients
+                        dispersed, and to help products dissolve more easily</p>
+                </td>
+                <td>Salad dressings, peanut butter, chocolate, margarine, frozen desserts</td>
+                <td>Soy lecithin, mono- and diglycerides, egg yolks, polysorbates, sorbitan monostearate</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Stabilizers and Thickeners, Binders, Texturizers</th>
+                <td>Produce uniform texture, improve "mouth-feel"</td>
+                <td>Frozen desserts, dairy products, cakes, pudding and gelatin mixes, dressings, jams and jellies,
+                    sauces
+                </td>
+                <td>Gelatin, pectin, guar gum, carrageenan, xanthan gum, whey</td>
+                <td><a href="" target="_blank">Meat Additives, General List</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">pH Control Agents and acidulants</th>
+                <td>Control acidity and alkalinity, prevent spoilage</td>
+                <td>Beverages, frozen desserts, chocolate, low acid canned foods, baking powder</td>
+                <td>Lactic acid, citric acid, ammonium hydroxide, sodium carbonate</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Leavening Agents</th>
+                <td>Promote rising of baked goods</td>
+                <td>Breads and other baked goods</td>
+                <td>Baking soda, monocalcium phosphate, calcium carbonate</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Anti-caking agents</th>
+                <td>Keep powdered foods free-flowing, prevent moisture absorption</td>
+                <td>Salt, baking powder, confectioner's sugar</td>
+                <td>Calcium silicate, iron ammonium citrate, silicon dioxide</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Humectants</th>
+                <td>Retain moisture</td>
+                <td>Shredded coconut, marshmallows, soft candies, confections</td>
+                <td>Glycerin, sorbitol</td>
+                <td><a href="" target="_blank">General List</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Yeast Nutrients</th>
+                <td>Promote growth of yeast</td>
+                <td>Breads and other baked goods</td>
+                <td>Calcium sulfate, ammonium phosphate</td>
+                <td><a href="https://www.fda.gov/food/ingredientspackaginglabeling/gras/microorganismsmicrobialderivedingredients/default.htm" target="_blank">Microorganisms & Microbial-Derived Ingredients Used in Food (Partial List)</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Dough Strengtheners and Conditioners</th>
+                <td>Produce more stable dough</td>
+                <td>Breads and other baked goods</td>
+                <td>Ammonium sulfate, azodicarbonamide, L-cysteine</td>
+                <td><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/cfrsearch.cfm?fr=136.110" target="_blank">Bakery Products</a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Firming Agents</th>
+                <td>Maintain crispness and firmness</td>
+                <td>Processed fruits and vegetables</td>
+                <td>Calcium chloride, calcium lactate</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Enzyme Preparations</th>
+                <td>Modify proteins, polysaccharides and fats</td>
+                <td>Cheese, dairy products, meat</td>
+                <td>Enzymes, lactase, papain, rennet, chymosin</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Gases</th>
+                <td>Serve as propellant, aerate, or create carbonation</td>
+                <td>Oil cooking spray, whipped cream, carbonated beverages</td>
+                <td>Carbon dioxide, nitrous oxide</td>
+                <td><a href="" target="_blank"></a></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Meat Additives</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="https://www.fsis.usda.gov/wps/portal/fsis/topics/food-safety-education/get-answers/food-safety-fact-sheets/food-labeling/additives-in-meat-and-poultry-products/additives-in-meat-and-poultry-products/!ut/p/a1/jZFRT4MwEMc_DY-lRebCfCMkZkMHLouu48UUKKVJaUlbRuant2h8mNmU3lPvfv-7y_9gATEsJDlxRixXkojpXyzf0Q4tg1WC0nwVPKJN9rbLn5IERft7Bxz_ALJwpv7Gi9F_-nTGgDu9TbYMFj2xLeCyURAzagGRZqTaQNwoVQNDGmrPoCGVBaal1P4UBCmp4JJBTOqaW36ixjUBHSVTixr0ahBWn0GvVT1Uk2wmd4DF5fIocLHJwv1inWYhyhe_gSvufgO37XP-MKHKr1MeY1mGkTNC04Zqqv1Bu3RrbW8ePOShcRx9phQT1K9U56FrklYZC_ElCfvuFX88x2vEX7pDZOJP7GCeDg!!/#10" target="_blank">FDA</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

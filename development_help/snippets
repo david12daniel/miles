@@ -1,0 +1,222 @@
+----------------------------------------------------------------------------------------------------------------
+Django (via code) to create a new user
+----------------------------------------------------------------------------------------------------------------
+from django.contrib.auth.models import User
+
+# Create user and save to the database
+user = User.objects.create_user('myusername', 'myemail@crazymail.com', 'mypassword')
+
+# Update fields and then save again
+user.first_name = 'John'
+user.last_name = 'Citizen'
+user.save()
+
+----------------------------------------------------------------------------------------------------------------
+Postgres
+----------------------------------------------------------------------------------------------------------------
+sudo -u postgres psql postgres
+
+----------------------------------------------------------------------------------------------------------------
+Docker
+----------------------------------------------------------------------------------------------------------------
+
+[database]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+docker exec -it oxbow_db_1 psql -h oxbow_db_1 -U heartleafweb -d heartleaf
+docker exec -it heartleaf--postgres psql -h heartleaf--postgres -U heartleaf -d heartleaf
+docker exec -it twinpeaks--postgres psql -h twinpeaks--postgres -U twinpeaks -d twinpeaks
+``
+
+docker cp /home/darin/miles/twinpeaks/src/main/resources/postgres/populate_faux_receipt.sql twinpeaks--postgres:/populate_faux_receipt.sql
+docker exec -it twinpeaks--postgres psql -h twinpeaks--postgres -U twinpeaks -d twinpeaks -a -f /populate_faux_receipt.sql
+
+docker exec -it twinpeaks--postgres psql -h twinpeaks--postgres -U postgres createdb -O twinpeaks_test twinpeaks_test
+docker exec -it twinpeaks--postgres psql -h twinpeaks--postgres -U twinpeaks -d twinpeaks_test -a -f /populate_faux_receipt.sql
+
+-- BACKUP DATABASE --
+docker exec -t oxbow_db_1 pg_dumpall -U postgres > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+docker exec -t twinpeaks--postgres pg_dumpall -U postgres >/home/darin/miles/twinpeaks/src/main/resources/postgres/dump_schema.sql
+
+-- RESTORE DATABASE --
+cat dump_06-01-2018_12_04_40.sql | docker exec -i heartleaf--postgres psql -U postgres
+cat dump_13-02-2018_08_46_35.sql | docker exec -i twinpeaks--postgres psql -U postgres
+
+
+[python]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+docker exec -it oxbow_web_1 pip install -r requirements.txt
+
+docker run -d --name twinpeaks -p 8090:8090 -p 8091:8091 com.miles/twinpeaks:0.0.1-SNAPSHOT
+
+docker exec -it oxbow_web_1 python manage.py populate_usda_db 64000
+docker exec -it oxbow_web_1 python manage.py populate_usda_db 64000
+
+docker container exec -it heartleaf--postgres bash
+
+[images]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# remove danglers
+docker rmi $(docker images -f dangling=true -q)
+
+# remove all
+docker rmi $(docker images -a -q)
+
+# remove all exited containers
+docker rm $(docker ps -a -f status=exited -q)
+
+# remove dangling volumes
+docker volume rm $(docker volume ls -f dangling=true -q)
+
+
+----------------------------------------------------------------------------------------------------------------
+Bash
+----------------------------------------------------------------------------------------------------------------
+
+# find in files and get file name
+find /dir1 -type f -printf "%f\n"
+
+----------------------------------------------------------------------------------------------------------------
+SQL
+----------------------------------------------------------------------------------------------------------------
+
+
+ALTER TABLE mb_receipt DROP CONSTRAINT account_mb_receipt_user_id_fkey; 
+ALTER TABLE mb_receipt ADD CONSTRAINT account_mb_receipt_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id);
+ALTER TABLE food_ingredient ADD CONSTRAINT ingredient_unique UNIQUE (ingredient);
+
+----------------------------------------------------------------------------------------------------------------
+DockerFile (JAVA)
+----------------------------------------------------------------------------------------------------------------
+
+#FROM openjdk:8-jdk-alpine
+#VOLUME /tmp
+#ARG JAR_FILE
+#ADD ${JAR_FILE} app.jar
+#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+
+
+----------------------------------------------------------------------------------------------------------------
+Configuring Tomcat
+----------------------------------------------------------------------------------------------------------------
+https://tecadmin.net/install-tomcat-9-on-ubuntu/#
+
+/usr/lib/jvm/java-8-openjdk-amd64/jre/
+
+
+echo "export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre"" >> /etc/environment
+
+<!-- user manager can access only manager section -->
+<role rolename="manager-gui" />
+<user username="manager" password="oxbowMiles123!" roles="manager-gui" />
+
+<!-- user admin can access manager and admin section both -->
+<role rolename="admin-gui" />
+<user username="admin" password="oxbowMiles123!" roles="manager-gui,admin-gui" />
+
+
+----------------------------------------------------------------------------------------------------------------
+JAVA
+----------------------------------------------------------------------------------------------------------------
+java -jar -Dspring.profiles.active=postgresql build/libs/twinpeaks-0.1.0.war
+./gradlew build buildDocker
+
+----------------------------------------------------------------------------------------------------------------
+POSTMAN
+----------------------------------------------------------------------------------------------------------------
+
+http://localhost:8090/example/v1/Receipts/?page=0
+http://localhost:8090/examples/v1/Receipts/?page=0
+
+----------------------------------------------------------------------------------------------------------------
+AUTH
+----------------------------------------------------------------------------------------------------------------
+
+-- Create a user
+curl -H "Content-Type: application/json" -X POST -d '{
+    "username": "oxbow22",
+    "password": "letoxbowin123!"
+}' http://localhost:8090/users/sign-up
+
+
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "username": "oxbow",
+    "password": "letoxbowin123!"
+}' http://localhost:8090/login
+
+curl -H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUzNDQ0NTQ1OH0.V5ozSVQwIf4pC66un6v0cMYvb-3cPc4hd7nge9UkK5TYEmqPPI1oyosRPugYQkPylw0V0gzdM3xaWahW8fZrlw
+" \
+-X POST -d '{
+    "description": "Buy watermelon"
+}'  http://localhost:8080/tasks
+
+
+curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUzNDQ0NTQ1OH0.V5ozSVQwIf4pC66un6v0cMYvb-3cPc4hd7nge9UkK5TYEmqPPI1oyosRPugYQkPylw0V0gzdM3xaWahW8fZrlw" http://localhost:8090/Food/1001
+
+----------------------------------------------------------------------------------------------------------------
+USDA
+----------------------------------------------------------------------------------------------------------------
+
+https://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key=EvozxfrgZOgiZ0fu9d0z99B5v2XRzb4yltkMscfr&offset=78000&max=700
+
+----------------------------------------------------------------------------------------------------------------
+ELASTIC SEARCH QUERIES
+----------------------------------------------------------------------------------------------------------------
+
+GET /watatic/_search
+{
+  "query" : {"match_all" : {} }
+}
+
+----------------------------------------------------------------------------------------------------------------
+TWINPEAKS DATA CONFIG
+----------------------------------------------------------------------------------------------------------------
+
+spring:
+  profiles: postgresql
+  jpa:
+    # database: postgres
+    show-sql: true
+    hibernate:
+      cache:
+        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+        use_query_cache: true
+        use_second_level_cache: true
+        provider_class: net.sf.ehcache.hibernate.EhCacheProvider
+      ddl-auto: update # update # update none
+      dialect: org.hibernate.dialect.PostgreSQL94Dialect
+
+
+----------------------------------------------------------------------------------------------------------------
+CREATE A NEW Postgres USER
+----------------------------------------------------------------------------------------------------------------
+su - postgres
+Create User for Postgres
+
+$ createuser testuser
+Create Database
+
+$ createdb testdb
+Acces the postgres Shell
+
+psql ( enter the password for postgressql)
+Provide the privileges to the postgres user
+
+$ alter user testuser with encrypted password 'qwerty';
+
+----------------------------------------------------------------------------------------------------------------
+CREATE A NEW Heartleaf USER
+----------------------------------------------------------------------------------------------------------------
+source local.env
+source .venv/bin/activate
+python manage.py createsuperuser
+
+----------------------------------------------------------------------------------------------------------------
+GIT SSH
+----------------------------------------------------------------------------------------------------------------
+
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+https://askubuntu.com/questions/762541/ubuntu-16-04-ssh-sign-and-send-pubkey-signing-failed-agent-refused-operation
+https://help.github.com/articles/error-agent-admitted-failure-to-sign/
+
+git@github.com:dpkimball/twinpeaks.git

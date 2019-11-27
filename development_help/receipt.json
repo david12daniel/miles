@@ -1,0 +1,344 @@
+{
+  "id": 0,
+  "store": {
+    "id": 0,
+    "number": "77",
+    "address": "301 Constitution Ave",
+    "city": "Littleton",
+    "state": "MA",
+    "zip": 816,
+    "phone": "1-978-486-0828"
+  },
+  "user_id": 100,
+  "subpurchase_total": 0.50,
+  "tax_total": 0.50,
+  "purchase_total": 2.00,
+  "total_items": 11,
+  "trace_no": 100,
+  "credit_account": {
+    "id": 0,
+    "user_id": 0,
+    "account": "XXX-XXX-XXX-3433"
+  },
+  "create_date": null,
+  "update_date": null,
+  "purchase_date": 1518141479595,
+  "receiptItems": [
+    {
+      "id": 0,
+      "category": {
+        "id": 1,
+        "category": "Create Grocery",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 1,
+            "label": "POLAR SLT CRL 2L PMA",
+            "description": "1 @ 5/ 5.00",
+            "price": 1.00,
+            "taxable": false,
+            "deposit": 0.50,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          },
+          {
+            "id": 0,
+            "category": 1,
+            "label": "POLAR SLT CRL 2L PMA",
+            "description": "1 @ 5/ 5.00",
+            "price": 1.00,
+            "taxable": false,
+            "deposit": 0.50,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          },
+          {
+            "id": 0,
+            "category": 1,
+            "label": "BUMBEE SOLID WHITE",
+            "description": "1 @ 2/ 3.00",
+            "price": 1.50,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 1,
+            "barcodevalue": "08660533",
+            "usda_food": null
+          },
+          {
+            "id": 0,
+            "category": 1,
+            "label": "OSPRAY CRAN POMEG",
+            "description": "",
+            "price": 3.99,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          },
+          {
+            "id": 0,
+            "category": 1,
+            "label": "POLAR SLT CRL 2L PMA",
+            "description": "1 @ 5/ 5.00",
+            "price": 1.00,
+            "taxable": false,
+            "deposit": 0.50,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          },
+          {
+            "id": 0,
+            "category": 1,
+            "label": "POLAR SLT CRL 2L PMA",
+            "description": "1 @ 5/ 5.00",
+            "price": 1.00,
+            "taxable": false,
+            "deposit": 0.50,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "POLAR SLT CRL 2L PMA",
+      "description": "1 @ 5/ 5.00",
+      "price": 1.00,
+      "taxable": false,
+      "deposit": 0.50,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": {
+        "id": 6,
+        "category": "Create Dairy",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 6,
+            "label": "JOE TABOULE SALAD",
+            "description": "",
+            "price": 2.99,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "JOE TABOULE SALAD",
+      "description": "",
+      "price": 2.99,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": 1,
+      "label": "POLAR SLT CRL 2L PMA",
+      "description": "1 @ 5/ 5.00",
+      "price": 1.00,
+      "taxable": false,
+      "deposit": 0.50,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": 1,
+      "label": "BUMBEE SOLID WHITE",
+      "description": "1 @ 2/ 3.00",
+      "price": 1.50,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 1,
+      "barcodevalue": "08660533",
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": {
+        "id": 2,
+        "category": "Create Meat",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 2,
+            "label": "MB AB CHICKENTENDER",
+            "description": "",
+            "price": 4.75,
+            "taxable": false,
+            "deposit": 0.50,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "MB AB CHICKENTENDER",
+      "description": "",
+      "price": 4.75,
+      "taxable": false,
+      "deposit": 0.50,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": 1,
+      "label": "OSPRAY CRAN POMEG",
+      "description": "",
+      "price": 3.99,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": {
+        "id": 3,
+        "category": "Create Deli",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 3,
+            "label": "HOFFMAN SHARP",
+            "description": "",
+            "price": 5.09,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "HOFFMAN SHARP",
+      "description": "",
+      "price": 5.09,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": 1,
+      "label": "POLAR SLT CRL 2L PMA",
+      "description": "1 @ 5/ 5.00",
+      "price": 1.00,
+      "taxable": false,
+      "deposit": 0.50,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": {
+        "id": 5,
+        "category": "Create Bakery",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 5,
+            "label": "TUSCAN PANE",
+            "description": "",
+            "price": 3.29,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "TUSCAN PANE",
+      "description": "",
+      "price": 3.29,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": 1,
+      "label": "POLAR SLT CRL 2L PMA",
+      "description": "1 @ 5/ 5.00",
+      "price": 1.00,
+      "taxable": false,
+      "deposit": 0.50,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    },
+    {
+      "id": 0,
+      "category": {
+        "id": 4,
+        "category": "Create Produce",
+        "receiptItems": [
+          {
+            "id": 0,
+            "category": 4,
+            "label": "BRUSSEL SPROUTS",
+            "description": "1.12 LB @ 1 LB / 1.99",
+            "price": 2.23,
+            "taxable": false,
+            "deposit": null,
+            "expiration": null,
+            "barcodetype": 0,
+            "barcodevalue": null,
+            "usda_food": null
+          }
+        ]
+      },
+      "label": "BRUSSEL SPROUTS",
+      "description": "1.12 LB @ 1 LB / 1.99",
+      "price": 2.23,
+      "taxable": false,
+      "deposit": null,
+      "expiration": null,
+      "barcodetype": 0,
+      "barcodevalue": null,
+      "usda_food": null
+    }
+  ]
+}

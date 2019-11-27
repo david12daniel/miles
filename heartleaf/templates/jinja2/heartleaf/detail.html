@@ -1,0 +1,31 @@
+<h1>{{ heartleaf.purchase_date }}</h1>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>NDBNO</th>
+      <th>Category</th>
+      <th>Label</th>
+      <th>Desc</th>
+      <th>Price</th>
+      <th>Name</th>
+      <th>UPC</i></th>
+      <th>Taxable</th>
+      <th>Deposit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for receipt in heartleaf.mbreceiptitem_set.all %}
+    <tr>
+      <td><a href="item/{{ receipt.usda.ndbno }}"> {{ receipt.usda.ndbno }} </a></td>
+      <td>{{ receipt.category.category_name }}</td>
+      <td>{{ receipt.label }}</td>
+      <td>{{ receipt.description }}</td>
+      <td>{{ receipt.price }}</td>
+      <td><a href="item/{{ receipt.usda.ndbno }}"> {{ receipt.usda.name }} </a></td>
+      <td>{{ receipt.usda.barcodevalue }}</td>
+      <td>{{ receipt.taxable }}</td>
+      <td>{{ receipt.deposit }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
