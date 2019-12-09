@@ -62,7 +62,7 @@ Oxbow targets [Python 3.6.2](https://www.python.org/downloads/release/python-362
 * Ensure the selected interpreter is the project's 3.6.1 virtualenv
 * Script parameters: `create_user <username> <email> <password> <first name> <last name>` (or create your own settings file and specify it here)
 
-![Pycharm](https://github.com/dpkimball/heartleaf/blob/master/pycharm.png)
+![Pycharm](https://github.com/david12daniel/miles/heartleaf/blob/master/pycharm.png)
 
 ### Docker Set Up Dependencies
 To run all container:
@@ -94,6 +94,6 @@ docker.elastic.co/kibana/kibana                 5.5.3               f37f1630a918
 docker.elastic.co/elasticsearch/elasticsearch   5.5.3               60503d5b81fb        17 months ago       510MB
 
 ```
-![Docker Containers](https://github.com/dpkimball/heartleaf/blob/master/docker-compose.png)
+![Docker Containers](https://github.com/david12daniel/miles/heartleaf/blob/master/docker-compose.png)
 
-![Heartleaf Receipt Items](https://github.com/dpkimball/heartleaf/blob/master/receipt_items.png)
+![Heartleaf Receipt Items](https://github.com/david12daniel/miles/heartleaf/blob/master/receipt_items.png)
